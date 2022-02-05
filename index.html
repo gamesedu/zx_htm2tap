@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin">
+ 
+ 
+  </script>
+
+Changes:
+-201019 - hidesubmit option
+
+-->
+  <script src="js/tinymce/tinymce.min.js" referrerpolicy="origin">
+
+  </script>
+  <script>tinymce.init({
+  	selector:'textarea',
+  	language: 'el',
+    entity_encoding: "raw",
+    height: "300",
+    menubar: 'file edit view insert format tools table help',
+    plugins: [
+             "table","image", 
+    ],    
+    toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | outdent indent |  numlist bullist | backcolor removeformat | forecolor | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | alignleft aligncenter alignright alignjustify | ltr rtl',
+    table_toolbar : "" , //Disables the internal table popup toolbar
+    browser_spellcheck : true, 
+    //gecko_spellcheck : true, //deprecated
+  //toolbar_sticky: true,
+  //table_responsive_width: true,
+  
+
+
+
+	});
+  	function myFunction (){
+
+   		//document.getElementById('theForm').submit();
+   		var x = document.getElementsByName('theForm');
+		x[0].submit(); // Form submission
+	}
+</script>
+</head>
+<body>
+	<form action="handle-submit.php" name="theForm" id="theForm" method="post" onsubmit="tinyMCE.triggerSave()">
+		<textarea name="text_entered" id="text_entered"  ></textarea>
+		<!--<div id="div-submit" >----------------------------div-submit -->
+		<label for="name">ΟΝΟΜΑ ΣΧΟΛΕΙΟΥ:</label> <!--SchoolName -->
+		<input type="text" id="schoolname" name="schoolname" size=15>
+		<br>
+		<br> ΤΑΞΗ:
+		<select name="taksi" id="taksi"> <!--Elementary Class -->
+			<option value="Α">Α</option>
+			<option value="Β">Β</option>
+			<option value="Γ">Γ</option>
+			<option value="Δ">Δ</option>
+			<option value="Ε">Ε</option>
+			<option value="ΣΤ">ΣΤ</option>
+		</select> ΤΜΗΜΑ:
+		<select name="tmima" id="tmima"><!--Elementary SubClass -->
+			<option value="1">1</option>
+			<option value="2">2</option>
+		</select>
+		<BR>
+		<label for="name">ΟΝΟΜΑ(ΤΑ):</label><!--Student names -->
+		<input type="text" id="name" name="name" size=60>
+		<br>
+		<button onclick="myFunction()">Click me</button>
+		<br>
+		<input type="submit" value="ΥΠΟΒΟΛΗ"> 
+		<!--</div>------------------------------------------div-submit -->
+	</form>
+  <hr>
+  <p onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" >
+  <div id="probeserver" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" ></div>
+      <BR>____________
+</p>
+<!-- FUNCTIONS #################### -->
+<script src="tinymce_lesson_js_footer.js" type="text/javascript"></script>
+<script>
+    //check if external file is loaded and if not load from CDN (NOTE : also works on Firefox 17)
+    if(typeof(first_click) === 'undefined') {
+      console.log("debug : typeof(first_click) === 'undefined'")
+     //document.write('<script src="https://cdn.jsdelivr.net/gh/plirof/tinymce_class/tinymce_lesson_js_footer.js"><\/script>')
+    }
+</script>  
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)http://torinak.com/qaop/info -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Qaop/JS emulator info</title>
+<link rel="icon" href="http://torinak.com/qaop/icon"><link rel="mask-icon" href="http://torinak.com/qaop/mask.svg" color="#c01"><meta name="viewport" content="width=device-width"><link rel="canonical" href="http://torinak.com/qaop/info">
+<style>
+:root{--fg:#111;--f2:#333;--bg:#fbfbf9;--ln:#b01;--lv:#656;--bb:#c01;--bf:#fff;--gr:#eee;--do:#bcd;--sb:#f0f0f0;--nw:122px;--mm:170px}body{font:15px/1.5 arial,sans-serif;margin:0;background:var(--bg);color:var(--fg)}h1{font:25px/1 tahoma,sans-serif;color:var(--ln)}main{margin:62px 12px 35px var(--mm);max-width:750px}a{color:var(--ln);outline:0;text-decoration:none}main a:focus,main a:hover{text-decoration:underline;outline:0}main :visited{color:var(--lv)}::selection{color:#fff;background:#c01}#l{display:flex;flex-flow:column;position:fixed;top:0;bottom:0;width:var(--nw);overflow-y:auto;padding-right:4px;font-size:13px;z-index:1}#emu{background:var(--bb);height:100px;padding:16px 2px 0 0;text-align:right;box-shadow:rgba(0,0,0,.2) 0 1px 5px,inset rgba(0,0,0,.3) 9px 0 9px -9px}#emu path{fill:var(--bf)}#d,#l>ul{width:90px;align-self:flex-end}#l>ul{padding:0;margin:12px 0;list-style:none}#l li>*{display:block;padding:6px 12px 6px 6px;margin:0;text-align:right}#d{letter-spacing:5px;font:italic 8px/1 consolas,arial,sans-serif;margin:auto 0 16px;padding:6px 0;color:var(--do);cursor:pointer;text-align:center;transition:.3s 3s,background-color .1s}#d:hover,#l li>a:focus,#l li>a:hover{background:var(--sb)}#jb{order:-1;margin-bottom:37px;font-size:15px;line-height:27px;width:27px;text-align:center;color:var(--gr)}#jb:focus,#jb:hover{color:#b01;background:var(--sb)}#d>i{letter-spacing:0;font:italic bold 12px/1.6 verdana,sans-serif;color:#379;border:0;overflow:hidden;cursor:pointer;display:none}#d:hover>i{display:block}@media (max-width:822px){:root{--nw:91px;--mm:calc(91px + 4%)}}@media (max-height:400px){main{margin-top:26px}#d,#jb{margin-bottom:0}}h2{font:bold 12px/1 arial,sans-serif;text-transform:uppercase;margin:1em 0}dt{float:left;height:1em}dd{margin-left:85px;min-height:1em}.w dd{margin-left:10em}kbd{display:inline-block;padding:1px 4px;min-width:3ex;margin:1px;vertical-align:1px;background:#eee;color:#000;border:1px solid;border-color:#d1d1d1 #ccc #bbb;box-shadow:rgba(0,0,0,.1) 0 2px 5px;background-image:linear-gradient(0deg,#e3e3e3,#f1f1f1,#ededed);font:11px/1.25 sans-serif;border-radius:2px;text-align:center}code{font-family:sans-serif;color:#071}code>span{letter-spacing:1px}main .ha{color:inherit}summary:focus{text-decoration:#B01 dashed underline;outline:0}@media (prefers-color-scheme:dark){:root{--fg:#ccc;--f2:#bbb;--bg:#0e0b0a;--ln:#c23;--lv:#ca7;--bb:#711;--bf:#aaa;--gr:#444;--do:#456;--sb:#222}kbd{background:#222;color:#ccc;border-color:#282828}code{color:#283}}@media print{:root{--fg:#000;--f2:#000}#emu{box-shadow:none;padding-top:0;background:0 0}#emu path{fill:#000}}</style>
+</head><body><main><h1>Qaop/JS – ZX Spectrum emulator</h1>
+<p>This is Sinclair ZX Spectrum emulator written in JavaScript.
+Models 48K and 128 supported.
+</p>
+
+<div style="overflow:hidden">
+<div style="float:left;width:255px">
+<h2>Keyboard</h2>
+<dl>
+<dt><kbd>Shift</kbd></dt><dd><i>Caps Shift</i>
+</dd><dt><kbd>Ctrl</kbd>, <kbd>Alt</kbd></dt><dd><i>Symbol Shift</i>
+</dd><dt><kbd>Ctrl</kbd>+<kbd>Del</kbd></dt><dd>Reset
+</dd><dt><kbd>F1</kbd></dt><dd>This page
+</dd><dt><kbd>F2</kbd></dt><dd>Remember state
+</dd><dt><kbd>F3</kbd></dt><dd>Recall state
+</dd><dt><kbd>F7</kbd></dt><dd>Toggle black &amp; white
+</dd><dt><kbd>F8</kbd></dt><dd><a href="http://torinak.com/qaop/keyboard" style="color:inherit">Keyboard layout</a>
+</dd><dt><kbd>F9</kbd></dt><dd>Toggle menus
+</dd><dt><kbd>F10</kbd></dt><dd>Mute
+</dd><dt><kbd>F11</kbd></dt><dd>Fullscreen
+</dd><dt><kbd>Pause</kbd></dt><dd>Pause
+</dd><dt><kbd>PgUp</kbd>/<kbd>PgDn</kbd></dt><dd>Change volume
+</dd><dt></dt><dt><kbd>Tab</kbd></dt><dd><i>Extended Mode</i>
+</dd><dt><kbd>Home</kbd></dt><dd><i>Edit</i>
+</dd><dt><kbd>Insert</kbd></dt><dd>Games page
+</dd></dl>
+</div>
+
+<div style="float:left;max-width:450px">
+<h2>URL Parameters</h2>
+<dl>
+<dt><code><span>#</span>l=<i>URL</i></code></dt><dd>Load a program (TAP, Z80, SNA, ROM) or a screen
+<!--dt><code><span>#</span>t=<i>URL</i></code><dd>Insert tape (but don’t load)-->
+</dd><dt><code><span>#</span>u=<i>URL</i></code></dt><dd>Load list of programs (plain text or HTML)
+</dd><dt><code><span>#</span>128</code></dt><dd>Spectrum 128 (<code><span>#</span>~128</code> switches to 48K)
+</dd><dt><code><span>#</span>ay</code></dt><dd>Enable AY even in 48K mode.
+</dd></dl>
+<p>experimental:
+</p><dl>
+<dt><code><span>#</span>tc2048</code></dt><dd>Timex TC2048 mode (HiRes not supported).
+</dd></dl>
+<p>Parameters may be concatenated. Prefix boolean flag with <code title="tilde">~</code> to disable. URL should point to a <a href="http://enable-cors.org/server.html">CORS-enabled</a> resource.
+<br>(header <code>Access-Control-Allow-Origin: *</code>)
+</p></div>
+</div>
+<details><summary><code>Content-Type</code>s</summary><dl class="w">
+<dt><code>application/x.zx.rom</code></dt><dd> ROM image
+</dd><dt><code>application/x.zx.tap</code></dt><dd> TAP file
+</dd><dt><code>application/x.zx.sna</code></dt><dd> SNA snapshot
+</dd><dt><code>application/x.zx.z80</code></dt><dd> Z80 snapshot
+</dd><dt><code>image/x.zx.scr</code></dt><dd> Screen
+</dd></dl></details>
+
+<div style="font-size:small">
+<p style="margin-top:2rem">Original ZX Spectrum ROM © <a class="ha" href="http://amstrad.com/">Amstrad PLC</a>.
+<br><i style="color:var(--f2)">Amstrad have kindly given their per­mission for the redistribution of their copyrighted material but retain that copyright.</i>
+
+</p><p>© 2011 – 2021 <a class="ha" href="http://torinak.com/~jb">Jan Bobrowski</a></p>
+</div></main>
+<nav id="l">
+<a href="http://torinak.com/qaop" id="emu" accesskey="q">
+<svg width="72" height="88"><title>run QAOP</title>
+<path transform="scale(5)" d="m2 0h2v2h1v1h2v-1h1v-2h2v2h-2v2h1v1h1v1h1v1h1v2h-1v-2h-1v1h-1v1h-1v1h1v1h-1v1h-1v-1h1v-1h-1v-1h-2v1h-1v1h1v1h-1v-1h-1v-1h1v-1h-1v-1h-1v-1h-1v2h-1v-2h1v-1h1v-1h1v-1h1v-2h-2zm2 7v1h4v-1z"></path>
+<path transform="scale(2)" d="m13 37h-4v2h4zm16 0h-4v2h4zm-24 0h-4v4h2v-1h-1v-1h1v1h1v1h1zm16 0h-4v4h4zm-20 5v-1h-1v-4h1v-1h4v1h1v4h-1v1zm12 0v-2h-4v2h-1v-5h1v-1h4v1h1v5zm4 0v-1h-1v-4h1v-1h4v1h1v4h-1v1zm7 0v-6h5v1h1v2h-1v1h-4v2z"></path>
+</svg></a>
+<ul><li><b style="padding-right:2px;cursor:default">info ‣</b></li><li><a href="http://torinak.com/qaop/games" accesskey="g">games</a></li><li><a href="http://torinak.com/qaop/links" accesskey="l">links</a></li></ul>
+<a id="d" tabindex="0" style=""><i><b>Pay</b>Pal</i>donate<form action="https://www.paypal.com/cgi-bin/webscr" method="post" hidden=""><input type="hidden" name="cmd" value="_donations"><input type="hidden" name="business" value="jb@torinak.com"><input type="hidden" name="item_name" value="Qaop/JS"><input type="hidden" name="lc" value="US"></form></a>
+<a id="jb" href="http://torinak.com/~jb" target="_top" rel="author">~jb</a>
+</nav>
+<script>
+if(localStorage['qaop-state'])setTimeout(function(){var e=document.getElementById('d');e.innerHTML='<i><b>Pay</b>Pal</i>donate<form action=https://www.paypal.com/cgi-bin/webscr method=post hidden%cmd value=_donations%business value=jb&#64;torinak.com%item_name value=Qaop/JS%lc value=US>'.replace(/%/g,'><input type=hidden name=');e.onclick=function(){e.lastChild.submit()};e.setAttribute('style','')},9)
+</script>
+</body></html>
