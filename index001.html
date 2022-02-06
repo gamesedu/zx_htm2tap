@@ -34,17 +34,23 @@ Changes:
 
 
 	});
+  	function myFunction (){
+
+   		//document.getElementById('theForm').submit();
+   		var x = document.getElementsByName('theForm');
+		x[0].submit(); // Form submission
+	}
 </script>
 </head>
 <body>
-	<form action="handle-submit.php" method="post" onsubmit="tinyMCE.triggerSave()">
+	<form action="handle-submit.php" name="theForm" target="emulator_output" id="theForm" method="post" onsubmit="tinyMCE.triggerSave()">
 		<textarea name="text_entered" id="text_entered"  ></textarea>
 		<!--<div id="div-submit" >----------------------------div-submit -->
-		<label for="name">ΟΝΟΜΑ ΣΧΟΛΕΙΟΥ:</label>
+		<label for="name">ΟΝΟΜΑ ΣΧΟΛΕΙΟΥ:</label> <!--SchoolName -->
 		<input type="text" id="schoolname" name="schoolname" size=15>
 		<br>
 		<br> ΤΑΞΗ:
-		<select name="taksi" id="taksi">
+		<select name="taksi" id="taksi"> <!--Elementary Class -->
 			<option value="Α">Α</option>
 			<option value="Β">Β</option>
 			<option value="Γ">Γ</option>
@@ -52,14 +58,15 @@ Changes:
 			<option value="Ε">Ε</option>
 			<option value="ΣΤ">ΣΤ</option>
 		</select> ΤΜΗΜΑ:
-		<select name="tmima" id="tmima">
+		<select name="tmima" id="tmima"><!--Elementary SubClass -->
 			<option value="1">1</option>
 			<option value="2">2</option>
 		</select>
 		<BR>
-		<label for="name">ΟΝΟΜΑ(ΤΑ):</label>
+		<label for="name">ΟΝΟΜΑ(ΤΑ):</label><!--Student names -->
 		<input type="text" id="name" name="name" size=60>
 		<br>
+		<button onclick="myFunction()">Click me</button>
 		<br>
 		<input type="submit" value="ΥΠΟΒΟΛΗ"> 
 		<!--</div>------------------------------------------div-submit -->
