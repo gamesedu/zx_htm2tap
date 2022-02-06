@@ -1,0 +1,684 @@
+PROGA:
+https://github.com/z00m128/zmakebas
+https://github.com/speccyorg/bas2tap
+https://github.com/andybalaam/bas2tap
+https://zgedneil.nfshost.com/zmakebas.html
+https://github.com/paulspringett/good-shepherd
+
+./zmakebas b.bas -o b2.tap
+
+
+
+modified for bas2tap:
+10 REM City Bomber (BUG JONmulti-line ver when crash -single line is better) Digital prawn 
+11 REM http://reptonix.awardspace.co.uk/sinclair/oneliners/
+20 READ i,j:
+30 FOR f=0 TO 39:
+40 READ d:
+50 POKE USR "a"+f,d:
+60 NEXT f:
+70 BORDER 5:
+80 POKE 23693,41:
+90 CLS :
+100 FOR m=1 TO 99:
+110 FOR a=10 TO 27:
+120 FOR b=-9 TO -RND*8:
+130 PRINT INK 2*(b>-9);AT 12-b,a;CHR$ (144+b/17);AT 11-b,a;CHR$ 145:
+140 NEXT b:
+150 NEXT a:
+160 FOR y=1 TO 20:
+170 FOR x=1 TO 25+4*(y<20):
+180 LET j=(j+1)*(j>0)*(j<21)+(INKEY$>"")*(j=0)*y:
+190 LET i=i+(x+1-i)*(j=0):
+200 LET t=x+3:LET c=ATTR (y,t)>41:
+210 PRINT AT j-(j>0),i;" ";AT j,i;CHR$ 148 AND (j>0)*(j<21);AT y,x;" "; FLASH c;CHR$ 146;CHR$ 147:
+220 BEEP .01+c,d-j-f*c:
+230 IF c=0 THEN NEXT x:
+240 PRINT AT y,28,: NEXT y:
+250 PRINT INK 0;m;" landed":
+260 BEEP .5,14: BEEP .5,16: BEEP .5,18:
+270 NEXT m:
+280 DATA 0,0,-1,159,d,d,-1,243,d,-1,0,24,60,126,-1,243,d,-1,0,48,120,124,127,d,63,0,0,0,0,0,-4,-2,-4,0,0,60,24,d,60,d,d,24
+
+
+
+
+
+
+
+
+
+____________________________
+NOTE to copy in BASIN :
+There may be a bug in the official version of BASin, but in the one I'm using (release 14) they paste just fine, with only one small effort required on the part of the user... When pasting, the "Add Code" window will appear, and some of these one-liners will be split over many lines (this is in part due to the way the windows clipboard works, and partly due to the CODE tags used in the webpage you copied from).
+
+**If you position your cursor at the end of the first line and press "DEL", the next line will be concatenated to the first. Repeat until the lines are all merged properly.**
+
+________________________
+Sources : https://worldofspectrum.org/forums/discussion/52743/
+_________________________
+1  REM zig-zag game
+10 LET x=5
+20 FOR a=1 TO 9
+30 RESTORE USR 3282
+40 LET x=x-2*(INKEY$<>"")*(x>2)+(x<29)
+50 PRINT AT 10,x;":"
+60 NEXT a
+70 PRINT AT 20,29-x;"| |"
+80 GO TO 20
+___________________________
+1 REM bubble run (Ski clone)
+10 LET B=0
+20 PRINT AT 0,B;"*"
+30 LET B=B+(INKEY$="6")-(INKEY$="7")
+40 POKE 23692,255
+50 LET X=RND*30: PRINT AT 20,X;"O"
+60 PRINT AT 21,0: PRINT '
+80 GO TO 20
+___________________________
+1 REM bubble run (2lines)
+10 LET B=0
+20 PRINT AT 0,B;"*": LET B=B+(INKEY$="7")-(INKEY$="6"): POKE 23692,0: PRINT AT 20,RND*30;"O"''': IF  SCREEN$ (0,B)<>"O" THEN GO TO 20
+---------------------------------------------
+
+1 REM Arrow (Ski clone(ripped from a BASIC code in WOS )v01
+10 LET B=0: LET d=0
+15 CLS 
+20 PRINT AT 0,B;"O"
+30 LET B=B+(INKEY$="6")-(INKEY$="7")
+40 POKE 23692,255: REM stop scroll message
+50 LET X=RND*30: PRINT AT 20,X; INK RND*6;"^"
+60 PRINT AT 21,0: PRINT '
+70 IF  SCREEN$ (0,B)="^" THEN LET d=d+1: PRINT INVERSE 1;"HIT ";d;" TIMES"; INVERSE 0
+80 GO TO 20
+
+---------------------
+
+___________________________
+9998 rem BASIC 1liner 20xx -City Bomber (as single line STOPs when crash) Digital prawn https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+1 READ i,j:
+ FOR f=0 TO 39:
+ READ d:
+ POKE USR "a"+f,d:
+ NEXT f:
+ BORDER 5:
+ POKE 23693,41:
+ CLS :
+ FOR m=1 TO 99:
+ FOR a=10 TO 27:
+ FOR b=-9 TO -RND*8:
+ PRINT INK 2*(b>-9);AT 12-b,a;CHR$ (144+b/17);AT 11-b,a;CHR$ 145:
+ NEXT b:
+ NEXT a:
+ FOR y=1 TO 20:
+ FOR x=1 TO 25+4*(y<20):
+ LET j=(j+1)*(j>0)*(j<21)+(INKEY$>"")*(j=0)*y:
+ LET i=i+(x+1-i)*(j=0):
+ LET c=ATTR (y,x+3)>41:
+ PRINT AT j-(j>0),i;" ";AT j,i;CHR$ 148 AND (j>0)*(j<21);AT y,x;" "; FLASH c;CHR$ 146;CHR$ 147:
+ BEEP .01+c,d-j-f*c:
+ IF c=0 THEN NEXT x:
+ PRINT AT y,28,: NEXT y:
+ PRINT INK 0;m;" landed":
+ BEEP .5,14:
+ BEEP .5,16:
+ BEEP .5,18:
+ NEXT m:
+ DATA 0,0,-1,159,d,d,-1,243,d,-1,0,24,60,126,-1,243,d,-1,0,48,120,124,127,d,63,0,0,0,0,0,-4,-2,-4,0,0,60,24,d,60,d,d,24
+___________________________
+
+10 REM City Bomber (BUG JONmulti-line ver when crash -single line is better) Digital prawn 
+11 REM http://reptonix.awardspace.co.uk/sinclair/oneliners/
+20 READ i,j:
+30 FOR f=0 TO 39:
+40 READ d:
+50 POKE USR "a"+f,d:
+60 NEXT f:
+70 BORDER 5:
+80 POKE 23693,41:
+90 CLS :
+100 FOR m=1 TO 99:
+110 FOR a=10 TO 27:
+120 FOR b=-9 TO -RND*8:
+130 PRINT INK 2*(b>-9);AT 12-b,a;CHR$ (144+b/17);AT 11-b,a;CHR$ 145:
+140 NEXT b:
+150 NEXT a:
+160 FOR y=1 TO 20:
+170 FOR x=1 TO 25+4*(y<20):
+180 LET j=(j+1)*(j>0)*(j<21)+(INKEY$>"")*(j=0)*y:
+190 LET i=i+(x+1-i)*(j=0):
+200 LET c=ATTR (y,x+3)>41:
+210 PRINT AT j-(j>0),i;" ";AT j,i;CHR$ 148 AND (j>0)*(j<21);AT y,x;" "; FLASH c;CHR$ 146;CHR$ 147:
+220 BEEP .01+c,d-j-f*c:
+230 IF c=0 THEN NEXT x:
+240 PRINT AT y,28,: NEXT y:
+250 PRINT INK 0;m;" landed":
+260 BEEP .5,14: BEEP .5,16: BEEP .5,18:
+270 NEXT m:
+280 DATA 0,0,-1,159,d,d,-1,243,d,-1,0,24,60,126,-1,243,d,-1,0,48,120,124,127,d,63,0,0,0,0,0,-4,-2,-4,0,0,60,24,d,60,d,d,24
+____________
+1 REM (Based on Bubble run a BASIC program from WOS forum) v03
+10 LET B=0: LET d=0: PAPER 7
+13 REM paper 2
+15 CLS : PRINT "--AVOID TREES--"': PRINT "By Firelord Quality Games Ltd"'"Game created to celebrate the "'"60th entry of the CSSCGC2021 "'"(for the second time)!"
+16 PRINT '"Santa has found You!!! You were skiing. "'"He sends small colorful "'"Christmas Trees on your way!"
+17 PRINT "If you pass over a tree it will hit your private parts!"'"You must avoid them(unless you  don't want to have any children)!!!": PRINT "Whenever we have a direct hit you will see a 'direct hit' counter -if you are lucky you will NOT see that counter!"'" Keys left:1 ,right:0 - Enjoy": PAUSE 0: CLS 
+20 PRINT AT 0,B-1; FLASH 1; INK 4;"|o|"; FLASH 0
+30 LET B=B+(INKEY$="1")-(INKEY$="0")
+39 REM stop scroll message
+40 POKE 23692,255
+50 LET X=RND*30: PRINT AT 20,X; INK RND*6;"^"
+60 PRINT AT 21,0: PRINT '
+70 IF  SCREEN$ (0,B)="^" THEN LET d=d+1: PRINT INVERSE 1;"OUCH# ";d;"!!!"; INVERSE 0
+80 GO TO 20
+
+
+
+___________________________
+9998 REM https://bunsen.itch.io/10miglia-by-marcos-retrobits PROBLEM
+1 LET M=23693: LET H=0: PRINT "Steer: 'z' or 'x'","Any key: select track": PAUSE 0: LET D= CODE INKEY$: LET B$=" ": RANDOMIZE D
+2 LET E$="{90}": LET F$="{91}": RESTORE 10: FOR I=0 TO 15: READ A: POKE 65368+I,A: NEXT I: BORDER 4: POKE M,34: CLS : READ A$: LET R=11: LET X=R+2
+3 FOR I=21 TO 0 STEP -1: GO SUB 9: BEEP .2*(I=0)+.1*(INT (I/6)=I/6),20+5*(I=0): NEXT I: LET I=21: LET B=0: LET P=0: LET S=0
+4 POKE M,62: PRINT AT 0,X;B$;AT 1,X;B$: POKE M,34: LET K$=INKEY$: LET A=USR 3582: GO SUB 9: LET A=RND: LET X=X+(K$="x")-(K$="z")
+5 LET Z=PEEK (22560+X): POKE M,58: PRINT AT 0,X;E$;AT 1,X;F$: LET R=R+(R<20)*RND-(R>2)*A: LET A=A*10
+6 IF A<6 THEN POKE M,56+B: LET C=INT (R+1+A): IF C<>P THEN LET P=C: PRINT AT 20,C;E$;AT 21,C;F$
+7 IF Z<>62 THEN LET H=(H>S)*H+(H<=S)*S: PRINT #1;A$;S;" HIGH:";H: BORDER 2: BEEP .5,-15: RANDOMIZE D: PAUSE 0: GO TO 2
+8 LET S=S+1: LET B=(B=0): GO TO 4: REM MARCO V. 2021 MARCO'S RETROBITS https://retrobits.itch.io
+9 POKE M,87: PRINT AT I,R;"{86}";: POKE M,62: PRINT "   .   ";: POKE M,87: PRINT "{89}"
+10 RETURN : DATA 60,126,231,195,255,126,126,126,66,66,231,255,255,126,90,60,"CRASH! SCORE:"
+
+
+___________________________
+9998 REM ROM-Run for Oktogonia by victor https://bunsen.itch.io/rom-run-for-oktogonia-by-victor
+Controls : A,D
+1 DATA 1,-21,18,16,"!",2,0.01,"↑",4: LET L=1: LET W=224: DIM H(21): POKE 23562,0
+   2 RESTORE : READ I,A,C,P,M$,E,T: PAPER 0: INK L: BORDER 0: CLS : POKE 23692,0
+   3 LET C=ABS (C+SGN (PEEK (L*985+A)-92)): LET H(I)=C+3: LET I=1+(I AND I<21)
+   4 LET K=ABS (CODE INKEY$-98): IF K<3 THEN LET P=P+K*2-3: POKE 23692,0: OUT 254,0
+  5 PRINT AT 21,0;"oOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoO",AT 20,C;"Oo   ": OUT 254,16
+   6 PRINT INK 7;AT 0,P;"V": REM © victor@oktogonia.com (https://www.oktogonia.com)
+   7 LET A=A+1: IF A=W THEN LET L=L+1: LET W=128+L*96: READ M$,E: GO TO 9
+   8 IF A<0 OR ABS (P-H(I))<=1 THEN GO TO 3: DATA 99,1," ▞▞ SAVED OKTOGONIA ▞▞"
+   9 PRINT #1;AT 0,13-L/9;M$;" (";A;")": BORDER E: IF L=5 THEN READ L,T,M$: GO TO 9
+   10 FOR N=0 TO (E-3)*E*4 STEP E-3: BEEP T,24+N: BEEP T,30+N: NEXT N: GO TO 2+T*9
+
+___________________________
+
+___________________________
+
+
+___________________________
+
+___________________________
+
+
+___________________________
+
+___________________________
+___________________________
+
+
+___________________________
+
+___________________________
+9998 rem 08SIMON.tap BASIC 10liner 2016
+1 INPUT "Speed? ";F: LET S=0
+2 CLS : LET A=(RND*23)+65: PRINT "Press ";CHR$ A;"   Score:";S
+3 PAUSE F: GO SUB 6: IF V=1 THEN LET S=S+1: LET T=3: GO SUB 5: GO TO 2
+
+4 LET T=-3: GO SUB 5: GO TO 1
+5 FOR N=0 TO 7: BORDER N: BEEP 0.02,N*T: NEXT N: RETURN 
+6 IF INKEY$=CHR$ A THEN LET V=1: RETURN 
+7 IF INKEY$=CHR$ (A+32) THEN LET V=1: RETURN 
+8 LET V=0: RETURN 
+
+___________________________
+9998 rem 23_10othello.tap BASIC 10liner 2016
+1 CLEAR : DIM t(91): INPUT "Players (1-2)?";f: RESTORE : READ n,t(41),t(42),t(50),t(51),t(1),z,p,z$
+
+2 LET p=3-p: LET q=z>1: DIM c(3): FOR a=1 TO 8: FOR b=1 TO 8: LET k=t(a*9+b+1): PRINT AT 18,3*b+2;b
+3 PRINT AT a+a,2;a; PAPER k+p*p*(a*9+b+1=z);AT a+a,3*b+1;"/  ";AT a+a+1,3*b+1;"___"
+4 LET c(k+1)=c(k+1)+1: NEXT b: NEXT a: PRINT ''" BLUE ";c(2);"x";c(3);" RED",: BORDER p
+5 LET e=c(1)*c(p+1)>0: INPUT ': IF e*f>=p THEN INPUT "Row (0-8)? ";a'"Col (0-8)? ";b
+6 FOR i=1 TO 62*e: LET z= CODE z$(i)-32+(a*9+b)*(a*b>0)*(b<9)
+7 BEEP .01,i: FOR j=0 TO 9*(t(z)=0)-1: LET d=j+INT (j/3)*6-10: LET w=z+d
+8 POKE n-2,8: IF t(w)=3-p THEN LET w=w+d: POKE (t(w)<>p)*n,1: LET w=w-d: LET t(w)=p: POKE (w<>z)*n,4
+9 NEXT j: GO TO 2+(8*(i*q<62)-5*(z>1=i))*(t(z)*j=0): DATA 23620,2,1,1,2,3,2,2
+10 NEXT i: BORDER 7: DATA "!2j+qX=0-ol_D?ZB]HT\\\@[QAKOF/.nmVMYPG>^ULC9876fedcka4,ph;1:bg5!"
+
+___________________________
+1 rem jumper-10liner.tzx BASIC 10liner 2017
+
+10 CLEAR : PRINT AT 10,2;"Boulder Jumper, by \@kevinhooke": PRINT AT 12,10;"b = you": PRINT AT 14,10;"O = rock"
+
+20 PRINT AT 16,10;"M = to jump": INPUT "Press a key when ready!",a$
+30 CLEAR : LET lives=3: LET score=0: LET jump=0: PRINT AT 2,10;"b"
+40 FOR i=30 TO 1 STEP -1: PRINT AT 2,i;"O": PRINT AT 2,i+1;" ": LET a$=INKEY$: IF i=1 THEN PRINT AT 2,1;" "
+50 PRINT AT 0,0;"Lives: ": PRINT AT 0,6;lives: PRINT AT 0,15;"Score: ": PRINT AT 0,22;score: IF jump=0 THEN PRINT AT 2,10;"b"
+60 IF jump=0 AND i=10 THEN PRINT AT 1,10;"ouch!": LET lives=lives-1: BEEP 1,-2: PRINT AT 1,10;"     ": PRINT AT 2,10;"b"
+70 IF lives=0 THEN PRINT AT 1,15;"Game Over!": BEEP 2,-4: INPUT "PRESS A KEY";a$: GO TO 10
+80 IF jump>0 THEN LET jump=jump-1: IF jump=0 THEN PRINT AT 2,10;"b": PRINT AT 1,10;" "
+90 IF a$="m" THEN PRINT AT 1,10;"b": PRINT AT 2,10;" ": LET jump=7: LET score=score+10: BEEP 0.1,4
+100 NEXT i: GO TO 40
+___________________________
+9998 rem BASIC 10liner 2019 - 10LineCarV2.tap
+5 REM BASIC 10liner 2019 - 10LineCarV2.tap -keys O,P,A
+10 CLEAR : RANDOMIZE : LET rec=0: LET z$="Drive all afternoon 'till       sundown avoiding spikes.        Faster you drive=more points    you win, but be careful not     to burn your engine!"
+20 RESTORE 1: BORDER 6: PAPER 5: BRIGHT 1: CLS : PRINT FLASH 1;"LIFE IS A ROAD AND ALL THAT SHIT";AT 21,0; FLASH 0;"O\#201P                     A=break";AT 6,2; INVERSE 0;z$: FOR a=USR "a" TO USR "d"+7: READ b: POKE a,b: NEXT a: PAUSE 0: CLS : DATA 1,1,61,66,129,188,119,60,128,160,32,222,1,61,246,60,137,82,76,36,36,36,36,36,92,162,69,149,163,86,169,195
+30 PRINT AT 14,0; PAPER 4;"\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d"; PAPER 2;"\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c\c"; PAPER 4,, PAPER 7; BRIGHT 0,,,,,, PAPER 4,,"0Mph         - VEL +      110Mph": PAPER 8: LET y=18: LET x=1: LET oy=17: LET ox=0: LET sol=0: LET punt=0
+40 LET ey=17+2*(INT (RND*2))-(INT (RND*1)): LET ex=30
+50 BEEP .01,-13: LET punt=punt+x: IF punt-x>rec THEN LET rec=punt
+60 PRINT BRIGHT 0;AT 21,x-1; PAPER 1+2*(x>15)-1*(x>22); OVER 1;" "; PAPER 4;" ": PRINT #0;AT 1,0;punt;"   ": LET sol=sol+.05: LET ex=ex-1: PRINT BRIGHT 0; INK 1;AT 18, ex-1;" * ";AT ey,ex-1;" * ": IF sol>30 THEN PRINT INVERSE 1;AT 9,9;"TIME OVER!"; INVERSE 0;" ";punt: FOR z=0 TO 333: NEXT z: GO TO 20
+70 IF ex<0 THEN PRINT BRIGHT 0;AT 18,ex;"   ";AT ey,ex;"   ": GO TO 40
+80 LET y=18+(INKEY$="p")-(INKEY$="o"): LET x=x-2*(INKEY$="a")*(x>0): IF oy<>y OR ox<>x THEN PRINT AT oy,ox; BRIGHT 0;;"  ";AT y,x;"\a\b";AT 1,sol; PAPER 5; BRIGHT 1;" "; PAPER 6;" ": LET oy=y: LET ox=x: LET x=x+1: BEEP .0015,x*2: IF x=30 THEN PRINT AT 21,26; PAPER 1; INK 2; FLASH 1;"BANG!!": BEEP 1,-33: LET x=0: LET punt=0: PRINT BRIGHT 0;AT 18,ex;" ";AT ey,ex;" ": PRINT PAPER 4;AT 21,0; OVER 1; BRIGHT 0,,AT 21,26; OVER 0;"110Mph": GO TO 40
+90 IF (ey=y OR y=18) AND (ex=x+1 OR ex=x) THEN PRINT INVERSE 1; FLASH 1;AT 8,15;":(";AT 10,4; FLASH 0;" Punt=";punt;" Record=";rec: FOR z=0 TO 333: NEXT z: GO TO 20
+100 GO TO 50: REM azimov2019
+
+___________________________
+9998 rem BASIC oneliner 20xx - 10miglia car
+1 LET M=23693: LET H=0: PRINT "Steer: 'z' or 'x'","Any key: select track": PAUSE 0: LET D= CODE INKEY$: LET B$=" ": RANDOMIZE D
+2 LET E$="\a": LET F$="\b": RESTORE 10: FOR I=0 TO 15: READ A: POKE 65368+I,A: NEXT I: BORDER 4: POKE M,34: CLS : READ A$: LET R=11: LET X=R+2
+3 FOR I=21 TO 0  STEP -1: GO SUB 9: BEEP .2*(I=0)+.1*(INT (I/6)=I/6),20+5*(I=0): NEXT I: LET I=21: LET B=0: LET P=0: LET S=0
+4 POKE M,62: PRINT AT 0,X;B$;AT 1,X;B$: POKE M,34: LET K$=INKEY$: LET A=USR 3582: GO SUB 9: LET A=RND: LET X=X+(K$="x")-(K$="z")
+5 LET Z=PEEK (22560+X): POKE M,58: PRINT AT 0,X;E$;AT 1,X;F$: LET R=R+(R<20)*RND-(R>2)*A: LET A=A*10
+
+6 IF A<6  THEN POKE M,56+B: LET C=INT (R+1+A): IF C<>P  THEN LET P=C: PRINT AT 20,C;E$;AT 21,C;F$
+7 IF Z<>62  THEN LET H=(H>S)*H+(H<=S)*S: PRINT #1;A$;S;" HIGH:";H: BORDER 2: BEEP .5,-15: RANDOMIZE D: PAUSE 0: GO TO 2
+8 LET S=S+1: LET B=(B=0): GO TO 4: REM MARCO V. 2021 MARCO'S RETROBITS https://retrobits.itch.io
+9 POKE M,87: PRINT AT I,R;"\'.";: POKE M,62: PRINT "   .   ";: POKE M,87: PRINT "\.'"
+10 RETURN : DATA 60,126,231,195,255,126,126,126,66,66,231,255,255,126,90,60,"CRASH! SCORE:"
+
+___________________________
+9998 rem BASIC 10liner 20xx - AI
+1 BEEP .4,5: BEEP .3,1: BEEP .5,4: BEEP .8,4: BEEP .4,5
+7 LET A=INT (2000*RND): INK 2: PAPER 6: BORDER 4: PRINT "Hello my Name is Clive the father of Sinclair Spectrum, what is your name?(Try first with name Sinclair)": INPUT A$
+30 IF A$="Sinclair" THEN PRINT "The same as my Surname the Spectrum inventor!!! Would you like i draw a wheel?": INPUT B$
+40 IF A$<>"Sinclair" THEN PRINT "i like your name, would you like to play a game with me?": GO TO 61
+50 IF B$="yes" THEN CLS : CIRCLE INK 4;220,150,20: CLS : GO TO 1
+60 IF B$="no" THEN PRINT "ok see you again": GO TO 1
+61 INPUT C$: IF C$="yes" THEN PRINT "Play with Clive Guess a number from 1 to 2000": INPUT D
+71 IF C$="no" THEN PRINT "ok see you later": GO TO 1
+73 LET A=INT (2000*RND): PRINT "Your number is": PRINT D: PRINT "Computer number is": PRINT A: IF D=A THEN PRINT "You win!!!": GO TO 1
+76 IF D<>A THEN PRINT "You lose": GO TO 1: IF C$="no" THEN PRINT "ok see you later": GO TO 1
+_____________________________________
+
+___________________________
+9998 rem BASIC 10liner 20xx -BAD DAY BEING A MICROBE
+1 LET r=0: BRIGHT 1: LET z$="\'.\'.\'.\'.\'."
+2 BORDER 3: PAPER 0: CLS : PRINT INK 7;AT 1,5;"BAD DAY BEING A MICROBE";AT 10,11; OVER 1;"Re"+CHR$ 8+"'cord:";r: LET l=0: PAUSE 0
+
+3 BORDER 3: CLS : LET t=333-(l*10): LET y=10: LET x=2: LET oy=0: LET ox=0: FOR z=0 TO 21: PRINT AT RND*21,6+(RND*21); INK 6;".";AT z,31; INK 4;"\::": NEXT z: FOR z=0 TO l*2: PRINT AT RND*21,6+RND*21; INK 7;".": NEXT z: PRINT PAPER 4; INK 7;AT 8,31;"G";AT 10,31;"O";AT 12,31;"A";AT 14,31;"L"
+4 LET t=t-1: IF x=29 THEN BORDER 4: BEEP 1,11: LET l=l+1: GO TO 3
+5 PRINT #0;AT 1,0;l;AT 1,28+(t<100)+(t<10);" ";t: IF ATTR (y,x)>66 OR ATTR (y-2,x)>69 OR ATTR (y+2,x)>69 OR ATTR (y,x-2)>69 OR ATTR (y,x+2)>69 OR t=0 THEN FOR z=y-2 TO y+2: PRINT PAPER 6; INK 2; FLASH 1;AT z,x-2;z$: NEXT z: BORDER 2: BEEP 1,-33: GO TO 2
+6 PRINT AT y,x; INK 2;"\::"; INK 5;AT oy,ox-2;"\::";AT oy,ox+2;"\::";AT oy-2,ox;"\::";AT oy+2,ox;"\::": LET y=y+(INKEY$="a")*(y<19)-(INKEY$="q")*(y>2): LET x=x+(INKEY$="p")*(x<29)-(INKEY$="o")*(x>2): PRINT AT oy,ox;"\::";AT oy,ox-2; INK 0;"\::";AT oy,ox+2;"\::";AT oy-2,ox;"\::";AT oy+2,ox;"\::": IF oy<>y OR ox<>x THEN BEEP .01,11: IF l>r THEN LET r=l
+7 LET oy=y: LET ox=x: GO TO 4
+
+___________________________
+9998 rem BASIC 10liner 20xx - ballgame.tap
+10 BORDER 6: CLS : LET s=0: LET x=RND*31: LET b=INT (x*28/31): LET y=RND*21
+20 LET u=2*(RND-.5): LET v=2*(RND-.5): PRINT AT RND*21,RND*31; INK 4;"*";#1;AT 1,0;s;
+30 LET m=(INKEY$="p" AND b<28)-(INKEY$="o" AND b>0)
+40 PRINT #1;AT 0,b-(m<0);" " AND m>0;"\.:\::\::\:.";" " AND m<0;: LET b=b+m
+50 IF (u<0 AND x<0.5) OR (u>0 AND x>30.5) THEN LET u=-u
+60 IF v<0 AND y<0.5 THEN LET v=-v
+70 IF y<20.5 OR v<0 THEN GO TO 100
+80 LET d=x-b-1.5: LET u=u+.2*d+.3*m: LET v=-v*(2-ABS d)-.4
+90 LET r=1/(ABS u+ABS v): LET u=r*u: LET v=r*v: IF ABS d>2 THEN RUN 
+100 PRINT AT y,x;" ";: LET x=x+u: LET y=y+v: LET h=ATTR (y,x)=60: PRINT AT y,x;"\*";: LET s=s+h: GO TO 30-10*h
+
+___________________________
+9998 rem BASIC 10liner 20xx - Bolalela 3.tap
+1 BORDER 1: PAPER 0: CLS : PAPER 7: LET e=0: LET d=1: LET c=0: LET x=1: BRIGHT 1
+2 LET y=2: LET t=27: FOR n=2 TO 20: PRINT AT n,1,,: GO SUB 3: NEXT n: GO TO 5
+3 PRINT AT y,x;"|";AT 0,15;c;AT n,31; BRIGHT 0;"\::";AT n,2+RND*t; INK n/4;"\''\''"
+4 PRINT AT n,1+RND*t; PAPER 6;"\*";AT n,2+RND*t; FLASH 1; INK 2;"\'.": RETURN 
+
+5 LET w=x: LET q=y: LET x=x+(INKEY$="p")-(INKEY$="o"): IF e=6 THEN LET d=1
+6 LET e=e+1: LET n=2+RND*18: IF ATTR (y,x)<65 THEN LET x=w: BEEP .005,-10
+7 LET y=y+d: IF ATTR (y,x) <65 THEN LET d=1-(d=1)*2: LET y=q: LET e=0: BEEP .008,1
+8 LET s=ATTR (y,x): IF s=112 THEN LET c=c+21-y: BEEP .008,15: GO SUB 3
+9 PRINT AT q,w;" ";AT y,x; OVER 1;"\*";AT y,x;">": IF s<128 THEN GO TO 5
+10 PRINT AT y,x;"X": BEEP 1,-20: CLS : PRINT AT 9,11;"Score ";c: PAUSE 99: RUN 
+
+___________________________
+
+
+___________________________
+9998 rem BASIC oneliner 20xx -Penguins move!_v2.tap (load from TAP not copy/paste) --https://worldofspectrum.org/forums/discussion/comment/955998
+3 READ r,y,x,p$: BORDER 5: POKE 23693,58: CLS : DIM q(5,2): FOR s=1 TO 5: LET q(s,1)=8: LET q(s,2)=9+s: NEXT s: FOR c=1 TO 3: LET k=PEEK 23560-99: PRINT AT y,x;" ": LET x=x+(x<30)*(k=4)-(x>1)*(k=3): LET y=y+(y<20)*(k=1)-(y>2)*(k=2): LET t=58-ATTR (y,x): LET r=r+(t=2): LET c=c-(t>-3): PRINT AT y,x;"\{p2b1i0}""";AT 0,0;"""\{b0p5i0}x";3-c,r;"x\{i0}\`";p$;"n",: LET i=2.5*RND-1.5: LET j=RND*2.5-1.5: LET s=s-1+5*(s=1): LET o=ATTR (q(s,1)+i,q(s,2)+j)=58: BEEP .1,7*t: PRINT AT q(s,1),q(s,2);" " AND o;AT y,x;"\{b1p2i0}H"+p$+"M": LET q(s,1)=q(s,1)+i*o: LET q(s,2)=q(s,2)+j*o: PRINT AT q(s,1),q(s,2);"\{i0}\`"+p$+"n" AND o: PRINT AT y+i,x+j;"\:.\.:\:'\':\.:"(s)+p$+"\{p7i5}*" AND ATTR (y+i,x+j)=58: BEEP .1,4: PAUSE 25: NEXT c: DATA 0,16,y,CHR$ 8+CHR$ 21+CHR$ 1
+___________________________
+
+9998 rem BASIC 1liner 20xx -Guess the number Oneliner contest https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+10 REM BASIC 1liner 20xx -Guess the number Oneliner contest
+20 LET X = INT (RND*1000)+1: 
+30 FOR N=1 TO 1000:
+40 INPUT "GUESS NUMBER ";G: 
+50 PRINT "ROUND=";N;TAB 10;"GUESS=";G,"HIGHER " AND G<X;"LOWER" AND G>X;"RIGHT" AND G=X: 
+60 IF G<>X THEN NEXT N
+70 PRINT "YOU WON" : PAUSE 0:CLS: GO TO 1
+___________________________
+9998 rem BASIC 1liner 20xx -Space Ski v01-Matt_B UDG!! https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+10 FOR f=USR "a" TO USR "b"+7:
+20 READ a: POKE f,a:
+30 NEXT f:
+40 LET score=0: BORDER 0: PAPER 0: INK 6: CLS : LET x=15:
+50 FOR f=1 TO 1000:
+60 PRINT AT 0,x;CHR$ 144: PRINT AT 21,INT (RND*32); INK 2;CHR$ 145: LET score=score+1: LET f=USR 3282:
+70 LET x=x+(INKEY$="0")-(INKEY$="1"): LET x=x+(x<0)-(x>31): LET f=1000*(ATTR (0,x)<>6):
+80 NEXT f:
+90 PRINT AT 0,0;"SCORE=";score:
+100 DATA 36,255,255,126,126,60,60,24,60,94,253,247,191,251,118,60
+
+_____________________________________________________________
+9998 rem BASIC 1liner 20xx -Space Ski v02  -Matt_B UDG https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+10 FOR f=65368 TO 65431: READ a: POKE f,a: NEXT f:
+20 LET s=0: BORDER 0: PAPER 0: INK 7: CLS : LET x=15:
+30 FOR f=0 TO 1:
+40 PRINT AT 0,x; INK 6;CHR$ 144:
+50 FOR g=0 TO s/99:
+60 PRINT AT 21,RND*31; BRIGHT 1; INK 7-g;CHR$ (145+g):
+70 NEXT g:
+80 LET s=s+USR 3282-800:
+90 LET x=x+(INKEY$="0" AND x<31)-(INKEY$="1" AND x>0):
+100 LET f=ATTR (0,x)<>7:
+110 NEXT f:
+120 PRINT AT 0,0;"Score=";s: INPUT "Press Enter", LINE a$: RUN :
+130 DATA 36,255,255,126,126,60,60,24,60,94,253,247,191,251,118,60,6,31,59,111,125,174,252,112
+140 DATA 0,66,189,231,231,189,66,0,0,195,60,126,126,60,195,0,24,60,90,255,255,90,60,24,14,17
+150 DATA 24,60,60,24,136,112,60,60,60,126,90,90,219,153
+
+___________________________
+9998 rem XX BASIC 1liner 20xx -Snake Bloodbaz EXPERT XXX https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+5 REM Snake Bloodbaz - keys:QAOP
+10 LET x=16: LET y=10: LET u=1: LET v=0: LET sc=0: 
+20 BORDER 1: CLS : PAPER 1: PRINT AT 0,0;"Score:",,: 
+30 FOR n=1 TO 1000: 
+40 PRINT AT 0,8;sc;" ";AT y,x; PAPER 2;" ": LET i$=INKEY$: 
+50 LET r=(i$="p" AND x<31)-(i$="o"): LET s=(i$="a" AND y<21)-(i$="q"): 
+60 LET u=((u AND NOT r)+(r AND r) AND s=0): LET v=((v AND NOT s)+(s AND s) AND r=0): 
+70 LET x=x+u: LET y=y+v: LET sc=sc+1: LET n=2000*(x<0 OR x>31 OR y<0 OR y>21 OR ATTR (y,x)<>56): 
+80 NEXT n: 
+90 PAPER 7: PRINT AT 1,0; PAPER 8;"You is dead!"'"Snake by Chris Walsh (BloodBaz)"
+___________________________
+9998 rem BASIC 1liner 20xx -SKI V+* https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+1 PAPER 0: BORDER 0: INK 7: CLS :
+INPUT "Speed 1 (faster) / 10 (slower)? ";l:
+DIM u(85): LET x=15: PRINT AT 11,10;"Get ready!!":
+FOR f=21 TO 85: LET u(f)=11+INT (RND*8): NEXT f:
+CLS : FOR g=1 TO 3: POKE 23692,255: FOR f=21 TO 85: LET b=u(f-20):
+PRINT AT 21,u(f);"*": PRINT : PRINT AT 0,x;" v ": PRINT : FOR h=1 TO l: NEXT h:
+LET a$=INKEY$: LET x=x-(a$="o" AND x>10)+(a$="p" AND x<17):
+IF b<>x+1 THEN NEXT f: NEXT g
+___________________________
+9998 rem BASIC 1liner 20xx -Breakout v02 Copy to BASIN -Matt_B UDG (use DEL to copy -see first line in pastebin) https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+10 REM Breakout v02 keys:1,0 Copy to BASIN -Matt_B UDG
+20 FOR f=65368 TO 65391: READ a: POKE f,a: NEXT f: 
+30 BORDER 0: PAPER 0: INK 7: CLS : 
+40 LET s=1: 
+50 FOR f=1 TO 7: 
+60 FOR g=1 TO 30: 
+70 PRINT AT f,g; BRIGHT 1; INK f;CHR$ (145+s): 
+80 LET s=NOT s: NEXT g: LET s=NOT s: 
+90 NEXT f: 
+100 LET x=9: LET y=1: LET p=9: LET a=1: LET b=1: 
+110 FOR f=0 TO 1: 
+120 PRINT AT x,y;"  ": LET x=x+a: LET y=y+b: LET t=(ATTR (x,y)<>7): 
+130 PRINT AT x,y;CHR$ 144;AT 21,p;" _____ ": LET a=a*-(2*t-1): LET s=s+t: LET f=(x=21 AND (y<p+1 OR y>p+5)): 
+140 LET p=p+(INKEY$="0" AND p<25)-(INKEY$="1" AND p>0): 
+150 LET b=b+2*(y=1)-2*(y=30): LET a=a+2*(x=0)-2*(x=21): 
+160 NEXT f: 
+170 PRINT AT 0,0;"Score=";s: INPUT "Press enter", LINE a$: RUN : 
+180 DATA 60,126,255,255,255,255,126,60,0,254,254,254,254,254,254,0,0,127,127,127,127,127,127,0
+
+___________________________
+9998 rem BASIC 1liner 20xx -https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+*********
+https://worldofspectrum.org/forums/discussion/16019/oneliner-contest/p7
+***************************************
+
+___________________________
+9998 rem BASIC 1liner 20xx -Space invaders DigitalPrawn keys:Q-P-M  https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+1 LET n=191: DIM i$(4,9): FOR g=2 TO 4: LET i$(g-1)=" # # # # ": NEXT g:
+ LET b=0: LET p=16: LET a=p: LET s=0: FOR y=0 TO 13:
+ LET e=y/2=INT (y/2): FOR x=(1-e)*24 TO e*24 STEP e*2-1: FOR i=1 TO 3:
+ PRINT AT y-1+2*i,x;i$(4);AT y+2*i,x;i$(i): NEXT i:
+ LET z=(b>y)*(b<y+7)*(a>x)*(a<x+9):
+ LET k=(z=0)+z*(b-y)/2: LET l=(z=0)+z*(1+a-x): LET h=i$(k,l)>" ":
+ PRINT AT b+1,a;" ";AT b,a;"| "(1+(b=0));AT h*b,a;" ";AT g-1,x+3;"   ";AT g,x+4;"| "(1+(g=21));AT 20,p-1;" ^ ";: POKE 23620,22+8*(g=20)*(p=x+4):
+ LET i$(k,l)=" ": LET s=s+h:
+ LET p=p-(IN 64510<n)*(p>1)+(IN 57342<n)*(p<30):
+ LET b=(1-h)*(b+19*(IN 32766<n)*(b=0)-1*(b>0)):
+ LET a=a*(b<19)+p*(b=19): LET g=1+g*(g<21)+(g=21)*(y+4): NEXT x:
+ NEXT y: PRINT "SC=";s
+
+___________________________
+9998 rem BASIC 1liner 20xx -https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+10 REM keys z,m - Ski/Space clone no checks
+20 BORDER 1: PAPER 0: INK 7: CLS : 
+30 LET h=15: LET s=0: POKE 23692,-1: 
+40 FOR t=1 TO 1000: 
+50 PRINT AT 21,RND*31;"*";AT 21,RND*31;"*";AT 21,RND*31;"*";AT 21,RND*31;"*"'': 
+60 LET h=h+(INKEY$="m" AND h<31)-(INKEY$="z" AND h>0): 
+70 IF SCREEN$ (0,h)<>"*" THEN PRINT INK 4;AT 0,h;"V": BEEP .001,20: 
+80 LET s=s+1: 
+90 NEXT t
+___________________________
+9998 rem BASIC 1liner 20xx -Meteroids (Ski) https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+10 REM Meteroids (Ski)  keys z,m https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+20 BORDER 1: PAPER 0: INK 7: CLS : 
+30 LET h=15: LET s=0: POKE 23692,-1: 
+40 FOR t=1 TO RND*1000: 
+50 PRINT AT 21,RND*31;"*";AT 21,RND*31;"*";AT 21,RND*31;"*";AT 21,RND*31;"*"'': 
+60 LET h=h+(INKEY$="m" AND h<31)-(INKEY$="z" AND h>0): 
+70 IF SCREEN$ (0,h)<>"*" THEN PRINT INK 4;AT 0,h;"V": BEEP .001,20: 
+80 LET s=s+1: 
+90 NEXT t: 
+100 PRINT INVERSE 1; FLASH 1; INK 4;AT 0,h;"V": 
+110 PRINT AT 1,1;"Congratulations! You survived!": PRINT AT 2,1;"Meteoroids: ";s*4
+___________________________
+
+
+
+___________________________
+9998 rem BASIC 1liner 20xx -tiny pacman **  digital prawn http://reptonix.awardspace.co.uk/sinclair/oneliners/ --https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+
+1 BORDER 0:
+ POKE 23693,1:
+ CLS :
+ DIM p(10):
+ FOR l=0 TO 4:
+ RESTORE :
+ READ w,s,m$,m$:
+ FOR t=1 TO 10:
+ LET p(t)=85-9*t:
+ PRINT AT t,0;m$(t*w-11 TO t*w):
+ NEXT t:
+ LET m$(p(1)+1)="":
+ LET k=113-CODE INKEY$:
+ FOR a=1 TO l+2:
+ LET g=p(a):
+ LET i=4*RND-2:
+ LET i=(a=1)*((k=1)-(k=2)+w*((k=16)-(k=0)))+SGN i*(1+11*(i*i<1))*(g<>p(1)):
+ LET c=CODE m$(g+i+1)-45:
+ LET p(a)=g+i*(c<2)-i*(m$(g-i+1)<"O")*(c>1)*(a>1):
+ PRINT AT g/w+.5,g-w*INT (g/w);m$(g+1);AT w,0;l*58+s;AT p(a)/w+.5,p(a)-w*INT (p(a)/w); INK 7-a*(t<1);"c@@@@@"(a):
+ LET t=t-1+(c=-9*a)*(37-t):
+ LET s=s+(a=c):
+ IF a=1 OR p(a)-p(1) OR t>0 THEN NEXT a:
+ POKE (s<56)*23620,w:
+ NEXT l:
+ DATA 12,1,"OOOOOOOOOOOOO...O......OO.O..OO.OO.OO.OO...$.O.OO....OO....",m$+m$(w TO )+m$
+
+___________________________
+9998 rem BASIC 1liner 20xx -tiny pacman 2 Strikes back** Keys:5-9  digital prawn http://reptonix.awardspace.co.uk/sinclair/oneliners/ --https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+
+1 BORDER 0:
+ POKE 23693,1:
+ CLS :
+ DIM p(10):
+ FOR l=0 TO 4:
+ RESTORE :
+ READ w,s,m$,m$:
+ FOR a=1 TO 10:
+ LET p(a)=85-9*a:
+ PRINT AT a,0;m$(a*w-11 TO a*w):
+ NEXT a:
+ LET m$(p(1)+1)="":
+ LET k=CODE INKEY$-48:
+ FOR a=1 TO l+2:
+ LET g=p(a):
+ LET i=8*RND-4:
+ LET i=(a=1)*((k=7)-(k=6)+w*((k=8)-(k=9)))+SGN (ABS i-2+SGN (p(1)-g))*(1+11*(i>0))*(g<>p(1)):
+ LET c=CODE m$(g+i+1)-45:
+ LET p(a)=g+i*(c<2)-i*(m$(g-i+1)<"O")*(c>1)*(a>1):
+ PRINT AT g/w+.5,g-w*INT (g/w);m$(g+1);AT w,0;l*58+s;AT p(a)/w+.5,p(a)-w*INT (p(a)/w); INK 7-a;"c@@@@@"(a):
+ LET s=s+(a=c):
+ BEEP (a=1)/99,c/2+l*4:
+ IF a=1 OR p(a)-p(1) THEN NEXT a:
+ POKE (s<58)*23620,w:
+ NEXT l:
+ DATA 12,1,"OOOOOOOOOOOOO...O......OO.O..OO.OO.OO.OO.....O.OO....OO....",m$+m$(w TO )+m$
+___________________________
+9998 rem BASIC 1liner 20xx -space invaders  digital prawn http://reptonix.awardspace.co.uk/sinclair/oneliners/ --https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+1 READ t,b,p,a,s,e,n:
+BORDER 0:
+POKE 23693,7:
+CLS :
+DIM i$(3,9):
+FOR g=1 TO 3:
+LET i$(g)=" # # # #":
+NEXT g:
+FOR y=0 TO 13:
+LET e=24-e:
+FOR x=24-e TO e STEP e/12-1:
+FOR i=1 TO 3:
+PRINT AT y-1+2*i,x,AT y+2*i,x;i$(i):
+NEXT i:
+LET z=(b>y)*(b<y+7)*(a>x)*(a<x+9):
+LET k=1+z*(b-y-2)/2:
+LET l=1+z*(a-x):
+LET h=i$(k,l)>" ":
+PRINT AT g-1,x+3;"   ";AT g,x+4;"|";AT 21,0;s,,AT b+1,a;" ";AT b,a;"| "(1+h+(b=0));AT 20,p-1;" ^ ":
+IF x+3-p+g/20 THEN LET i$(k,l)="":
+LET s=s+h:
+LET p=p-(IN 64510<n)*(p>1)+(IN 57342<n)*(p<30):
+LET b=(1-h)*(b+19*(IN 32766<n)*(b=0)-(b>0)):
+LET a=a+(p-a)*(b=19):
+LET g=1+g+(g=21)*(y+4-g):
+BEEP .01,y+t:
+LET t=1-t:
+NEXT x:
+NEXT y:
+POKE 23620,32-30*(s/12=INT (s/12)):
+DATA 0,0,16,p,0,0,191
+___________________________
+9998 rem BASIC 1liner 20xx -tiny pacman 3 returnof pacman**  digital prawn http://reptonix.awardspace.co.uk/sinclair/oneliners/ --https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+
+1 DIM p(10):
+ LET b=0:
+ FOR l=0 TO 4:
+ RESTORE :
+ READ w,s,m$,m$:
+ FOR f=1 TO 10:
+ LET p(f)=85-9*f:
+ PRINT AT f,0;m$(f*w-11 TO f*w):
+ NEXT f:
+ LET m$(p(1)+1)="":
+ LET k=CODE INKEY$-48:
+ FOR a=1 TO l+2:
+ LET g=p(a):
+ LET u=g=28*(f>50):
+ LET b=b+(a=u):
+ LET f=f+1-1e9*u:
+ LET i=8*RND-4:
+ LET i=(a=1)*((k=7)-(k=6)+w*((k=8)-(k=9)))+SGN (ABS i-2+SGN (p(1)-g))*(1+11*(i>0))*(g<>p(1)):
+ LET c=CODE m$(g+i+1)-45:
+ LET p(a)=g+i*(c<2):
+ PRINT AT g/w+.5,g-w*INT (g/w);m$(g+1);AT w,0;s+l*58+b*2;AT 3,4; INK a;"£" AND f>50;AT p(a)/w+.5,p(a)-w*INT (p(a)/w);"c@@@@@"(a):
+ LET s=s+(a=c):
+ IF a=1 OR p(a)-p(1) THEN NEXT a:
+ POKE (s<58)*23620,10:
+ NEXT l:
+ DATA 12,0,"OOOOOOOOOOOOO..........OO..O OO.O..OO.O......O.OO...OOOO...",m$+m$(w TO )+m$
+___________________________
+9998 rem BASIC 1liner 20xx -tCHECK FOR MORE  digital prawn http://reptonix.awardspace.co.uk/sinclair/oneliners/ --https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+
+
+
+___________________________
+9998 rem BASIC 1liner 20xx -A-Maze SLOW**  digital prawn http://reptonix.awardspace.co.uk/sinclair/oneliners/ --https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+1 DIM m(862): READ n,p,z,q,g: FOR g=g-1 TO g: LET p=p-z: LET m(p)=1: POKE 22496+p,9: NEXT g: LET z=68- CODE "d$CE"(RND*3+1): LET j=p/32-z/16: POKE (m(p-z-z)<(j>1)*(j<23)*(j>INT j))*n,3: LET p=64*INT (RND*11)+2*INT (RND*15)+66: POKE (g<165)*n,11-3*m(p): POKE n+53,0: FOR p=32 TO 767: POKE 22496+p,9*m(p)+9*(p=q): NEXT p: LET k= CODE INKEY$: LET d=(k=55)-(k=54)+32*((k=56)-(k=57)): POKE (d=0)*n,17-3*(k=48): LET q=q+d*m(q+d): LET t=50-PEEK 23673: CLS : IF q<>671 THEN PRINT #0;t: LET k=k*(k<48)+5-4*m(q+(k=8)-(k=20)+32*((k=2)-(k=14))): DRAW 4* CODE "W[OXOJaPUPKPPEQHQV?PKPUPPIzIWPIW&WIP"(k)-320,4* CODE "WPKPUPP[OXOJaPUPKPPEQHQV?IPWIzIWPIW&"(k)-320: POKE n,17+8*((t>0)*k<36): DATA 23620,672,1,130,0*USR 7766
+___________________________
+9998 rem BASIC 1liner 20xx -CaveAdventure  digital prawn http://reptonix.awardspace.co.uk/sinclair/oneliners/ --https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+1 READ r,k,c,s,v: PRINT '"You are in a ";"cavehallpit lake"(r*4-3 TO r*4): INPUT u$: LET n=0: LET f=0: FOR i=1 TO LEN u$: LET v= CODE u$(1)-96: LET n=n+ CODE u$(i)*(f>n): LET f=f+(u$(i)=" "): NEXT i: LET m=(v=14)*((r=1)+(r=3))-(v=19)*((r=2)+(r=4))+(v=5)*(r=2)-(v=23)*(r=3): LET a=r*(v=12)*(n=0)+(6-4*k-s)*(v=9)+(r=2)*(13-s)*(v=11)+(r=3)*(((1+5*s+c)*(v=12)+9*c*(1-k)*(v=15))*(n=99)+10*(c=0)*s*(v=7)*(n=115))+(r=4)*((1+4*k)*(v=12)*(n=99)+8*(v=7)*(n=107)*k)+11*ABS m: LET r=r+m: LET k=k-(a=8): LET c=c-(a=9): LET s=s-(a=10): PRINT ">";u$'"Can't doNothing A dragonA chest A corpseA key   A sword Closed  Taken   Opened  Taken   You walkYou diedYou won!"(a*8+1 TO a*8+8): POKE (a<12)*23620,2: DATA 1,1,1,1,0
+
+
+
+___________________________
+9998 rem BASIC 1liner 20xx -tiny pacman 2 Strikes back**  digital prawn http://reptonix.awardspace.co.uk/sinclair/oneliners/ --https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+
+
+___________________________
+9998 rem BASIC 1liner 20xx -https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+
+___________________________
+9998 rem BASIC 1liner 20xx -labyrin3d Digital prawn  keys 6,7,9 https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+1 CLS :
+ DIM m(3e3):
+ LET m(INT (RND*5)*2+1430)=USR 7766^0:
+ FOR r=1 TO 31:
+ FOR s=1 TO 23:
+ READ p,z,j,i,w,m(i+i-z*(1<r>r/16)),m(i+i+(s<11)),m(i+i):
+ POKE 22496+s*32+r,15*m(i)+(i=p):
+ RESTORE :
+ NEXT s:
+ NEXT r:
+ LET k=CODE INKEY$:
+ POKE ((s<175)*k<1)*23620,11:
+ READ u,u,u,u,u,u,u,u,u,z,j,p,c,d,q:
+ BEEP .1,p/46:
+ CLS :
+ PRINT ,174-s;#1,"NEWS"(2+j/46+(j>0)):
+ LET o=m(q):
+ LET a=c:
+ LET c=(d+d+a)*o-a:
+ LET d=INT (d-.3*o*d):
+ FOR e=-.5 TO 1:
+ LET w=INT (.35*a-d)*(m(q-e*2*j)<o):
+ PLOT 128+a*e,88-d-w:
+ DRAW (c-a)*e,w:
+ DRAW 0,d+d:
+ DRAW (a-c)*e,w:
+ NEXT e:
+ LET q=q+z:
+ POKE (p+z<i)*23620,8+9*o*(q<i)*(c>1):
+ DATA 110,46,1,r*z+s,RND,w*(r>2)<.7,w>.3,1,(k=54)-(k=55),z+u*(j-z*u),z*(2117*(z*z=1)-1)/46,p+(k=57)*z*m(p+z),250,114,p
+
+___________________________
+9998 rem BASIC 1liner 20xx -CaveAdventure Digital prawn https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+
+___________________________
+9998 rem BASIC 1liner 20xx -CaveAdventure Digital prawn https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+
+___________________________
+9998 rem BASIC 1liner 20xx -CaveAdventure Digital prawn https://worldofspectrum.org/forums/discussion/comment/189539/#Comment_189539
+
+
+
+
+___________________________
+0 rem BASIC oneliner 2008 - race 
+
+1 BORDER 0: PAPER 0: INK 5: CLS : READ o$,n,a,c,m: FOR t=1 TO 20: LET o=INT (RND*3-1): INK 7: PRINT AT 10,0,,: INK 5: FOR d=0 TO 4: PRINT AT 11,c-1;" ^ ^ ";AT m,0,,AT 21,0;"t";t,: LET m=m+d: PRINT AT m,15+m*o;o$(1 TO d+(d=0)): LET c=c-(IN 64510<n)*(c>2)+(IN 57342<n)*(c<23): LET a=a-(a>-1)+2*(IN 32766<n)-(a>8): FOR q=1 TO 9-a: NEXT q: NEXT d: LET m=0: LET t=INT (t+a/5-1-3*((ATTR (10,c)<6)+(ATTR (10,c+3)<6)+(ATTR (10,c+6)<6))): LET t=t*(t>0): NEXT t: PAPER 7: INK 0: BORDER 7: CLS : PRINT "You made it!": DATA "____",191,0,11,0
+
+
+___________________________
+0 rem BASIC oneliner 20xx -
+___________________________
+0 rem BASIC oneliner 20xx -
+
+___________________________
+0 rem BASIC oneliner 20xx -
+___________________________
+
+___________________________
