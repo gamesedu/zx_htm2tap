@@ -57,7 +57,8 @@ echo "<HR><h2>Η εργασία σας καταχωρήθηκε.</h2> Παρακ
 
 //$output = shell_exec("cd $target_subfolder;"."./bas2tap $myfile");
 //$output = shell_exec("cd $target_subfolder;".'./bas2tap '. $myfile);
-$output = shell_exec('./bas2tap '.$target_subfolder.$file_name.".htm");
+$output = shell_exec('./zmakebas64_jon '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas seem to work better
+//$output = shell_exec('./bas2tap '.$target_subfolder.$file_name.".htm");	   
 echo "<pre>Bas2Tap result : $output</pre>";
 
 //$tmpURL="<a href=".$qaopURL."?#l=".$dir."/$ff target='blank' >$dir/$ff </a>";
