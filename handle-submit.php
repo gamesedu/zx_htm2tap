@@ -68,12 +68,13 @@ echo "<HR><h2>Η εργασία σας καταχωρήθηκε.</h2> Παρακ
 
 //$output = shell_exec("cd $target_subfolder;"."./bas2tap $myfile");
 //$output = shell_exec("cd $target_subfolder;".'./bas2tap '. $myfile);
-$output = shell_exec('./zmakebas64_jon '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas seem to work better
-//$output = shell_exec('./bas2tap '.$target_subfolder.$file_name.".htm");	   
+///$output = shell_exec('./zmakebas64_jon '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas64 seem to work better
+//$output = shell_exec('./bas2tap '.$target_subfolder.$file_name.".htm");	
+$output = shell_exec('./zmakebas_32bit '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas32 seem to work better online mochahost	   
 echo "<pre>Bas2Tap result : $output</pre>";
 
 //$tmpURL="<a href=".$qaopURL."?#l=".$dir."/$ff target='blank' >$dir/$ff </a>";
-//https://qaop.dimotika.tk/qaop.html?#l=zxgames/!_4Mobile_/!GUNBOAT.Z80
+
 //$tmpURL="<a href=".$qaopURL."?#l=".$target_subfolder."/$file_name.tap target='blank' >$target_subfolder/$file_name.tap </a>";
 $tmpURL="<a href=".$qaopURL."?#l=".$target_subfolder."$file_name.tap target='emulator_output' >$target_subfolder/$file_name.tap </a>";
 echo "file_name=$file_name<br>";
