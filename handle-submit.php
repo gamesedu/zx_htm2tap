@@ -22,8 +22,8 @@
    <body onload="load()" >
 <?php
 /*
-http://localhost/zx/tinymce_class/tinymce_submit.html?showsubmit
-
+http://localhost/zx/zx_mce2tap/
+220205 - Removed spaces from filename
 220103 - You can also include the supplied `html2text.php` and use `$text = convert_html_to_text($html);` instead.
 200902 - initial version - different file per submission 
 Changes
@@ -47,6 +47,7 @@ $mytext=$_REQUEST["text_entered"] ;// get TinyMCE html
 echo "<HR>";
 //$cur_date= date('Ymd');
 $file_name="sch".$_REQUEST["schoolname"]."-".$_REQUEST["taksi"].$_REQUEST["tmima"]."-".date('Ymd')."-".$_REQUEST["name"];
+$file_name=str_replace(' ', '_',$file_name);//replace spaces with '_'
 
 echo $file_name.".htm";
 //$file_name=$cur_date;
