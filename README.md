@@ -1,6 +1,6 @@
 # zx_mce2tap
 gamesedu/zx_mce2tap
--BUG : < (greater) takes it as start of TAG!!! (zmakebas seems better)
+-BUG : bas2tap : < (greater) takes it as start of TAG!!! (zmakebas seems better)
 
 
 # commands
@@ -27,3 +27,6 @@ https://github.com/speccyorg/bas2tap
 https://github.com/andybalaam/bas2tap
 https://zgedneil.nfshost.com/zmakebas.html
 https://github.com/paulspringett/good-shepherd
+
+https://github.com/coding-horror/basic-computer-games
+https://github.com/GReaperEx/bcg

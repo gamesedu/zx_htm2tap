@@ -22,8 +22,8 @@
    <body onload="load()" >
 <?php
 /*
-http://localhost/zx/tinymce_class/tinymce_submit.html?showsubmit
-
+http://localhost/zx/zx_mce2tap/
+220205 - Removed spaces from filename
 220103 - You can also include the supplied `html2text.php` and use `$text = convert_html_to_text($html);` instead.
 200902 - initial version - different file per submission 
 Changes
@@ -47,6 +47,7 @@ $mytext=$_REQUEST["text_entered"] ;// get TinyMCE html
 echo "<HR>";
 //$cur_date= date('Ymd');
 $file_name="sch".$_REQUEST["schoolname"]."-".$_REQUEST["taksi"].$_REQUEST["tmima"]."-".date('Ymd')."-".$_REQUEST["name"];
+$file_name=str_replace(' ', '_',$file_name);//replace spaces with '_'
 
 echo $file_name.".htm";
 //$file_name=$cur_date;
@@ -68,12 +69,13 @@ echo "<HR><h2>Η εργασία σας καταχωρήθηκε.</h2> Παρακ
 
 //$output = shell_exec("cd $target_subfolder;"."./bas2tap $myfile");
 //$output = shell_exec("cd $target_subfolder;".'./bas2tap '. $myfile);
-$output = shell_exec('./zmakebas64_jon '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas seem to work better
-//$output = shell_exec('./bas2tap '.$target_subfolder.$file_name.".htm");	   
+///$output = shell_exec('./zmakebas64_jon '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas64 seem to work better
+//$output = shell_exec('./bas2tap '.$target_subfolder.$file_name.".htm");	
+$output = shell_exec('./zmakebas_32bit '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas32 seem to work better online mochahost	   
 echo "<pre>Bas2Tap result : $output</pre>";
 
 //$tmpURL="<a href=".$qaopURL."?#l=".$dir."/$ff target='blank' >$dir/$ff </a>";
-//https://qaop.dimotika.tk/qaop.html?#l=zxgames/!_4Mobile_/!GUNBOAT.Z80
+
 //$tmpURL="<a href=".$qaopURL."?#l=".$target_subfolder."/$file_name.tap target='blank' >$target_subfolder/$file_name.tap </a>";
 $tmpURL="<a href=".$qaopURL."?#l=".$target_subfolder."$file_name.tap target='emulator_output' >$target_subfolder/$file_name.tap </a>";
 echo "file_name=$file_name<br>";

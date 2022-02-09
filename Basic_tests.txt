@@ -204,6 +204,11 @@ Controls : A,D
 
 ___________________________
 
+5 INPUT "ENTER YOUR NAME(S) :";b$
+10 LET A$=" HELLO "+b$+"! YOU ARE THE BEST!!!! "
+20 LET A$=A$(2 TO )+A$(1)
+30 PRINT AT 10,1;A$(1 TO 30)
+40 GOTO 20
 ___________________________
 
 
