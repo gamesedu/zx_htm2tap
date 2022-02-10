@@ -2,6 +2,9 @@
 gamesedu/zx_mce2tap
 -BUG : bas2tap : < (greater) takes it as start of TAG!!! (zmakebas seems better)
 
+NOTE 1: This is a modification of one of my other scripts.   
+NOTE 2: Use this on LOCAL server ONLY. This is designed for local LAN use and NOT with web security in mind!
+NOTE 3: handle_submit.php : uncomment the correct line for 32bit or 64 bit versions.
 
 # commands
 ./zmakebas b.bas -o b2.tap
@@ -9,7 +12,7 @@ gamesedu/zx_mce2tap
 
 # compile commands
 gcc -Wall -o bas2tap bas2tap.c -lm
-zmakebas: make and then make install
+zmakebas: "make" and then "make install"
 
 
 

@@ -67,11 +67,12 @@ echo "<HR><h2>Η εργασία σας καταχωρήθηκε.</h2> Παρακ
 //++++++++++++++++++++++++++++++++ BAS2TAP : bas2tap $file_name $file_name.TAP++++++++++++++++++++++
 //$file_name
 
+$output = shell_exec('./zmakebas64_jon '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas64 seem to work better
+///$output = shell_exec('./zmakebas_32bit '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas32 seem to work better ONLINE mochahost	   
+//$output = shell_exec('./bas2tap '.$target_subfolder.$file_name.".htm");	
 //$output = shell_exec("cd $target_subfolder;"."./bas2tap $myfile");
 //$output = shell_exec("cd $target_subfolder;".'./bas2tap '. $myfile);
-///$output = shell_exec('./zmakebas64_jon '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas64 seem to work better
-//$output = shell_exec('./bas2tap '.$target_subfolder.$file_name.".htm");	
-$output = shell_exec('./zmakebas_32bit '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas32 seem to work better online mochahost	   
+
 echo "<pre>Bas2Tap result : $output</pre>";
 
 //$tmpURL="<a href=".$qaopURL."?#l=".$dir."/$ff target='blank' >$dir/$ff </a>";
