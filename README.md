@@ -1,5 +1,5 @@
-# zx_mce2tap
-gamesedu/zx_mce2tap
+# zx_htm2tap
+gamesedu/zx_htm2tap
 -BUG : bas2tap : < (greater) takes it as start of TAG!!! (zmakebas seems better)
 
 NOTE 1: This is a modification of one of my other scripts.   
