@@ -23,6 +23,7 @@
 <?php
 /*
 http://localhost/zx/zx_mce2tap/
+220210 - Added & tested zmakebas152_win.exe 
 220209 - Added sample code for bas2tap.exe 
 220205 - Removed spaces from filename
 220103 - You can also include the supplied `html2text.php` and use `$text = convert_html_to_text($html);` instead.
@@ -69,7 +70,11 @@ echo "<HR><h2>Η εργασία σας καταχωρήθηκε.</h2> Παρακ
 //$file_name
 
 $output = shell_exec('./zmakebas64_jon '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas64 seem to work better
+///$output = shell_exec('./zmakebas15_win.exe '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //windows
+///$output = shell_exec('./zmakebas152_win.exe '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //windows
+
 ///$output = shell_exec('./zmakebas_32bit '.$target_subfolder.$file_name.".htm"." -o ".$target_subfolder.$file_name.".tap"    ); //zmakebas32 seem to work better ONLINE mochahost	   
+
 //$output = shell_exec('./bas2tap '.$target_subfolder.$file_name.".htm");	
 //$output = shell_exec("cd $target_subfolder;"."./bas2tap ".$file_name.".htm");
 //$output = shell_exec("cd $target_subfolder;"."./bas2tap.exe ".$file_name.".htm"); //windows
