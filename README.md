@@ -1,10 +1,20 @@
 # zx_htm2tap
 gamesedu/zx_htm2tap
+Uses Edit-Area
+
+Changes:
+220215 - Using edit-are without line_numbers
+
 -BUG : bas2tap : < (greater) takes it as start of TAG!!! (zmakebas seems better)
+-ToDo: zmakebas: check if a line containing eg "x<20" creates an error
+
+
+
 
 NOTE 1: This is a modification of one of my other scripts.   
 NOTE 2: Use this on LOCAL server ONLY. This is designed for local LAN use and NOT with web security in mind!
 NOTE 3: handle_submit.php : uncomment the correct line for 32bit or 64 bit versions.
+NOTE 4: Make sure zmakebas and bas2tap are executionable.
 
 # commands
 ./zmakebas b.bas -o b2.tap
