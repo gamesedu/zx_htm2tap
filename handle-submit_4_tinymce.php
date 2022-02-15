@@ -38,8 +38,7 @@ $target_subfolder="word_saved_data/";
 $qaopURL='qaop.html';
 
 
-//include 'Html2Text.php'; //ΟΡΙΓΙΝΑΛ
-include 'Html2Text_4_forEditArea.php';// Mod for EditArea (fixes problem with line break)
+include 'Html2Text.php';
 
 print_r ($_REQUEST);
 
