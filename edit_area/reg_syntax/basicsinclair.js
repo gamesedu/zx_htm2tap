@@ -1,6 +1,6 @@
 editAreaLoader.load_syntax["basicsinclair"] = {
 	'DISPLAY_NAME' : 'SinclairBasic'
-	,'COMMENT_SINGLE' : {1 : 'REM' /* , 2 : "'" */  } 
+	,'COMMENT_SINGLE' : {1 : 'REM'  , 2 : "rem" , 3 : "Rem"  , 4 : "REm", 5 : "rEM", 6 : "rEm", 7 : "reM" } 
 	,'COMMENT_MULTI' : { }
 	,'QUOTEMARKS' : {1: '"'}
 	,'KEYWORD_CASE_SENSITIVE' : false
@@ -42,7 +42,7 @@ editAreaLoader.load_syntax["basicsinclair"] = {
 			'LLIST','LN','LOAD','LPRINT','MERGE','MOVE','NEW',
 			'NEXT','NOT','OPEN','OR1','OUT','OVER','PAPER','PAUSE',
 			'PEEK','PI','PLOT','POINT','POKE','PRINT','RANDOMIZE',
-			'READ','REM','RESTORE','RETURN','RND','RUN','SAVE',
+			'READ','RESTORE','RETURN','RND','RUN','SAVE',
 			'SCREEN$','SGN','SIN','SQR','STEP','STR$','TAB','TAN',
 			'THEN','TO','USR','VAL$','VAL','VERIFY',
 			'AND'
