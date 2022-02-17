@@ -23,6 +23,7 @@
 <?php
 /*
 http://localhost/zx/zx_mce2tap/
+220217 - replaced Html2Text_4_forEditArea.php  with function rip_tags($string)
 220210 - Added & tested zmakebas152_win.exe 
 220209 - Added sample code for bas2tap.exe 
 220205 - Removed spaces from filename
@@ -32,6 +33,19 @@ Changes
 
 */
 
+function rip_tags($string) {
+    // ----- remove HTML TAGs -----
+    //$string = preg_replace ('/<[^>]*>/', ' ', $string);
+    // ----- remove control characters -----
+    $string = str_replace("\r", '', $string);    // --- replace with empty space
+    //$string = str_replace("\n", ' ', $string);   // --- replace with space
+    $string = str_replace("\t", ' ', $string);   // --- replace with space
+    // ----- remove multiple spaces -----
+    $string = trim(preg_replace('/ {2,}/', ' ', $string));
+    return $string;
+
+}
+
 
 $target_subfolder="word_saved_data/";
 //$qaopURL=$target_subfolder.'QAOP/qaop.html';
@@ -39,7 +53,7 @@ $qaopURL='qaop.html';
 
 
 //include 'Html2Text.php'; //ΟΡΙΓΙΝΑΛ
-include 'Html2Text_4_forEditArea.php';// Mod for EditArea (fixes problem with line break)
+//include 'Html2Text_4_forEditArea.php';// Mod for EditArea (fixes problem with line break)
 
 print_r ($_REQUEST);
 
@@ -61,7 +75,11 @@ $txt="";
 //$txt = "<h2>$file_name</h2>\n";
 //fwrite($myfile, $txt);
 $txt = $txt."$mytext\n";
-$txt = \Soundasleep\Html2Text::convert($txt); // STrip HTML tags
+$txt = str_replace("\r\n", "\n", $txt); //JON added for replaceing HTML2TExt
+//$txt = \Soundasleep\Html2Text::convert($txt); // STrip HTML tags
+//$txt=strip_tags($txt);
+$txt=rip_tags($txt);
+
 fwrite($myfile, $txt);
 fclose($myfile);
 
