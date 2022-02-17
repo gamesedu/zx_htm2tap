@@ -1,39 +1,57 @@
 editAreaLoader.load_syntax["basicsinclair"] = {
 	'DISPLAY_NAME' : 'SinclairBasic'
-	,'COMMENT_SINGLE' : {1 : "'", 2 : 'REM'}
+	,'COMMENT_SINGLE' : {1 : 'REM' /* , 2 : "'" */  } 
 	,'COMMENT_MULTI' : { }
 	,'QUOTEMARKS' : {1: '"'}
 	,'KEYWORD_CASE_SENSITIVE' : false
 	,'KEYWORDS' : {
 		'statements' : [
 			'if','then','for',
-			'else','elseif','select',
 			'next','step','to'
+			//'else','elseif','select',
 		]
 		,'keywords' : [
-			'exit','dim', 'redim', 'shared', 'const',
-			'is', 'absolute', 'access', 'any', 'append', 'as',
-			'base', 'beep', 'binary', 'bload',
-			'circle', 'clear', 'close', 'cls', 'color',
-			'com', 'common', 'data', 'date', 'declare', 'def',
-			'defint', 'deflng', 'defsng', 'defstr',
-			'double', 'draw', 'environ', 'erase', 'error', 'field',
-			'files', 'fn', 'get', 'gosub', 'goto', 'integer', 'key',
-			'let', 'line', 'list', 'locate', 'lock', 'long',
-			'lprint', 'lset', 'mkdir', 'name', 'off', 'on', 'open',
+			'PAPER','BORDER','INK','FLASH','INVERSE','OVER','PLOT',
+			'PI','STEP','DATA','restore','gosub', 'goto','go',
+			'circle',  'cls','draw','def', 'fn','screen$',
+			'let', 'line', 'list','return', 'run',
+			'poke', 'randomize', 'read','stop','dim','beep',
+
+			'com', 'common', 'date', 'declare', 'clear', 'close',
+			'defint', 'deflng', 'defsng', 'defstr', 'color',
+			'double', 'environ', 'erase', 'error', 'field',
+			'files',  'get',  'integer', 'key','locate', 'lock', 'long',
+			'lprint', 'lset',  'name', 'off', 'on', 'open',
 			'option', 'out', 'output', 'paint', 'palette', 'pcopy',
-			'poke', 'preset', 'print', 'pset', 'put', 'random',
-			'randomize', 'read', 'reset', 'restore', 'resume',
-			'return', 'run', 'screen', 'seg',
-			'shell', 'single', 'sleep', 'sound', 'static', 'stop',
+			'preset', 'print', 'pset', 'put', 'random',
+			 'reset', 'resume', 'screen', 'seg',
+			'shell', 'single', 'sleep', 'sound', 'static', 
 			'strig', 'string', 'swap', 'system', 'time', 'timer',
 			'troff', 'tron', 'type', 'unlock', 'using', 'view',
 			'wait', 'width', 'window', 'write',
-			'PAPER','BORDER','INK','FLASH','INVERSE','OVER','PLOT',
-			'PI'
+			'exit', 'redim', 'shared', 'const',
+			'is', 'absolute', 'access', 'any', 'append', 'as',
+			'base',  'binary', 'bload',
+			//added by other site
+			'ABS','ACS','ASN','AT','ATN','ATTR','BEEP',
+			'BIN','BORDER','BRIGHT','CAT','CHR$','CIRCLE','CLEAR',
+			'CLOSE','CLS','CODE','CONTINUE','COPY','COS','DATA',
+			'DEFFN','DIM','DRAW','ERASE','EXP','FLASH','FN','FOR',
+			'FORMAT','GOSUB','GOTO','IF','IN','INK','INKEY$',
+			'INPUT','INT','INVERSE','LEN','LET','LINE','LIST',
+			'LLIST','LN','LOAD','LPRINT','MERGE','MOVE','NEW',
+			'NEXT','NOT','OPEN','OR1','OUT','OVER','PAPER','PAUSE',
+			'PEEK','PI','PLOT','POINT','POKE','PRINT','RANDOMIZE',
+			'READ','REM','RESTORE','RETURN','RND','RUN','SAVE',
+			'SCREEN$','SGN','SIN','SQR','STEP','STR$','TAB','TAN',
+			'THEN','TO','USR','VAL$','VAL','VERIFY',
+			'AND'
+
 	        ]
 		,'functions' : [
-			'abs', 'asc', 'atn', 'cdbl', 'chr', 'cint', 'clng',
+			'abs', 
+
+			'asc', 'atn', 'cdbl', 'chr', 'cint', 'clng',
 			'cos', 'csng', 'csrlin', 'cvd', 'cvdmbf', 'cvi', 'cvl',
 			'cvs', 'cvsmbf', 'eof', 'erdev', 'erl', 'err', 'exp',
 			'fileattr', 'fix', 'fre', 'freefile', 'hex', 'inkey',
@@ -57,7 +75,7 @@ editAreaLoader.load_syntax["basicsinclair"] = {
 	]
 	,'STYLES' : {
 		'COMMENTS': 'color: #99CC00;'
-		,'QUOTESMARKS': 'color: #333399;'
+		,'QUOTESMARKS': 'color: green;' //#333399;
 		,'KEYWORDS' : {
 			'keywords' : 'color: #3366FF;'
 			,'functions' : 'color: #0000FF;'
