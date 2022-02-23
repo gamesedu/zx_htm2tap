@@ -23,6 +23,7 @@
 <?php
 /*
 http://localhost/zx/zx_mce2tap/
+220222 - include - zx_convert_keywords_to_uppercase.php
 220217 - replaced Html2Text_4_forEditArea.php  with function rip_tags($string)
 220210 - Added & tested zmakebas152_win.exe 
 220209 - Added sample code for bas2tap.exe 
@@ -32,6 +33,12 @@ http://localhost/zx/zx_mce2tap/
 Changes
 
 */
+$zx_convert_keywords_loaded=false;
+$convert_keywords=true;
+$target_subfolder="word_saved_data/";
+//$qaopURL=$target_subfolder.'QAOP/qaop.html';
+$qaopURL='qaop.html';
+
 
 function rip_tags($string) {
     // ----- remove HTML TAGs -----
@@ -47,9 +54,6 @@ function rip_tags($string) {
 }
 
 
-$target_subfolder="word_saved_data/";
-//$qaopURL=$target_subfolder.'QAOP/qaop.html';
-$qaopURL='qaop.html';
 
 
 //include 'Html2Text.php'; //ΟΡΙΓΙΝΑΛ
@@ -59,6 +63,12 @@ print_r ($_REQUEST);
 
 
 $mytext=$_REQUEST["text_entered"] ;// get TinyMCE html
+
+if($convert_keywords){ 
+	include "zx_convert_keywords_to_uppercase.php";
+	if ($zx_convert_keywords_loaded) $mytext=convert_to_upper($mytext);
+}
+
 
 
 echo "<HR>";
