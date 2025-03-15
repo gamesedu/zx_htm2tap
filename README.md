@@ -1,8 +1,9 @@
 # zx_htm2tap
 gamesedu/zx_htm2tap
-Uses Edit-Area
+Uses Edit-Area and zmakebas
 
 Changes:
+230122 - Added PC number dropbox to submit form
 220215 - Using edit-are without line_numbers
 
 -BUG : bas2tap : < (greater) takes it as start of TAG!!! (zmakebas seems better)

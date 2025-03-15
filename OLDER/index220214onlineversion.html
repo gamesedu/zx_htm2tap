@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Basic EDITOR</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin">
  
@@ -9,7 +8,6 @@
   </script>
 
 Changes:
--230122 - Added PC number selection combo to form
 -220214 - Edit-Area test002
 -201019 - hidesubmit option
   <script src="js/tinymce/tinymce.min.js" referrerpolicy="origin">
@@ -44,17 +42,15 @@ editAreaLoader.init({
 </head>
 <body>
 	<form action="handle-submit.php" name="theForm" target="emulator_output" id="theForm" method="post" onsubmit="editAreaLoader.getValue('text_entered')">
-		
 <textarea name="text_entered" id="text_entered" wrap="hard" >
 10 PRINT "HELLO"	
+20 INPUT "AA= ";a$
 </textarea>
-<button onclick="myFunction()">ΥΠΟΒΟΛΗ.</button><br>
-		<!-- 20 INPUT "AA= ";a$ -->
 		<!--<div id="div-submit" >----------------------------div-submit -->
-		<label for="name">ΟΝΟΜΑ ΣΧΟΛΕΙΟΥ:</label> <!--SchoolName -->
+		<label for="name">ΟΝΟΜΑ ΣΧΟΛΕΙΟΥ (School):</label> <!--SchoolName -->
 		<input type="text" id="schoolname" name="schoolname" size=15>
 		<br>
-		<br> ΤΑΞΗ:
+		<br> ΤΑΞΗ (Class):
 		<select name="taksi" id="taksi"> <!--Elementary Class -->
 			<option value="Α">Α</option>
 			<option value="Β">Β</option>
@@ -62,36 +58,16 @@ editAreaLoader.init({
 			<option value="Δ">Δ</option>
 			<option value="Ε">Ε</option>
 			<option value="ΣΤ">ΣΤ</option>
-		</select> ΤΜΗΜΑ:
+		</select> ΤΜΗΜΑ (sub-class):
 		<select name="tmima" id="tmima"><!--Elementary SubClass -->
 			<option value="1">1</option>
 			<option value="2">2</option>
 		</select>
 		<BR>
-		PC Αριθμός:
-		<select name="pc" id="pc">
-			<option value="00">ΕΠΙΛΕΞΤΕ</option>
-			<option value="01">1</option>
-			<option value="02">2</option>
-			<option value="03">3</option>
-			<option value="04">4</option>
-			<option value="05">5</option>
-			<option value="06">6</option>
-			<option value="07">7</option>
-			<option value="08">8</option>
-			<option value="09">9</option>
-			<option value="10">10</option>
-			<option value="11">11</option>
-			<option value="12">12</option>
-			<option value="13">13</option>
-			<option value="14">14</option>
-			<option value="15">15</option>
-			<option value="16">16</option>
-		</select>		
-		<label for="name">ΟΝΟΜΑ(ΤΑ):</label><!--Student names -->
+		<label for="name">ΟΝΟΜΑ(ΤΑ)/Names:</label><!--Student names -->
 		<input type="text" id="name" name="name" size=60>
 		<br>
-		
+
 		<br>
 		<input type="submit" value="ΥΠΟΒΟΛΗ"> 
 		<!--</div>------------------------------------------div-submit -->
